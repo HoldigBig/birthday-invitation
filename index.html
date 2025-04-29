@@ -5,12 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приглашение на День Рождения!</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <div class="stars"></div>
     <div class="card">
         <div class="card-front">
             <div class="front-content">
+                <div class="crown"></div>
                 <h1>Приглашение на День Рождения!</h1>
+                <div class="main-photo">
+                    <!-- Здесь будет главное фото именинника -->
+                    <div class="photo-placeholder">
+                        <i class="fas fa-image"></i>
+                        <p>Добавьте фото именинника</p>
+                    </div>
+                </div>
                 <div class="balloon-container">
                     <div class="balloon"></div>
                     <div class="balloon"></div>
@@ -23,14 +33,72 @@
             <div class="inside-content">
                 <h2>Ура! Мне исполняется 3 года!</h2>
                 <div class="party-details">
-                    <p>Дорогой друг!</p>
-                    <p>Приглашаю тебя на мой День Рождения!</p>
+                    <p class="special-text">Дорогие друзья!</p>
+                    <p>Приглашаю вас на свой День Рождения!</p>
                     <div class="details-box">
-                        <p>🎈 Когда: [Дата и время]</p>
-                        <p>📍 Где: [Адрес]</p>
-                        <p>🎉 Будет много веселья, игр и вкусностей!</p>
+                        <p><i class="fas fa-calendar-alt"></i> Когда: [Дата и время]</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Где: [Адрес]</p>
+                        <p><i class="fas fa-gift"></i> Будет много веселья, игр и вкусностей!</p>
                     </div>
-                    <p class="rsvp">Пожалуйста, подтвердите своё присутствие по телефону: [номер телефона]</p>
+                    
+                    <div class="photo-gallery">
+                        <h3>Мои любимые моменты</h3>
+                        <div class="gallery-grid">
+                            <!-- Плейсхолдеры для фотографий -->
+                            <div class="photo-item">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                            <div class="photo-item">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-image"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="entertainment-section">
+                        <h3>Что нас ждёт?</h3>
+                        <div class="entertainment-items">
+                            <div class="entertainment-item">
+                                <i class="fas fa-birthday-cake"></i>
+                                <p>Вкусный торт</p>
+                            </div>
+                            <div class="entertainment-item">
+                                <i class="fas fa-gamepad"></i>
+                                <p>Весёлые игры</p>
+                            </div>
+                            <div class="entertainment-item">
+                                <i class="fas fa-magic"></i>
+                                <p>Сюрпризы</p>
+                            </div>
+                            <div class="entertainment-item">
+                                <i class="fas fa-music"></i>
+                                <p>Музыка и танцы</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="rsvp">
+                        <i class="fas fa-phone"></i>
+                        Пожалуйста, подтвердите своё присутствие по телефону: [номер телефона]
+                    </p>
+
+                    <div class="dress-code">
+                        <h3><i class="fas fa-tshirt"></i> Дресс-код</h3>
+                        <p>Яркая и удобная одежда для весёлых игр!</p>
+                    </div>
                 </div>
             </div>
         </div>
