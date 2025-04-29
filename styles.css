@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fff6e5, #ffcee6);
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    perspective: 1500px;
+    cursor: pointer;
+}
+
+.card-front, .card-inside {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform 1s ease;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.card-front {
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border: 8px solid #fff;
+}
+
+.front-content {
+    padding: 20px;
+}
+
+.card-inside {
+    background: white;
+    transform: rotateY(-180deg);
+    padding: 20px;
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
+    border: 8px solid #fff;
+    overflow-y: auto;
+}
+
+.card.open .card-front {
+    transform: rotateY(180deg);
+}
+
+.card.open .card-inside {
+    transform: rotateY(0);
+}
+
+h1 {
+    color: #ff4081;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #ff4081;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.balloon-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.balloon {
+    width: 40px;
+    height: 50px;
+    background: #ff4081;
+    border-radius: 50%;
+    position: relative;
+    animation: float 3s ease-in-out infinite;
+}
+
+.balloon:nth-child(2) {
+    background: #64b5f6;
+    animation-delay: 0.2s;
+}
+
+.balloon:nth-child(3) {
+    background: #81c784;
+    animation-delay: 0.4s;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background: #666;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.click-me {
+    color: white;
+    font-size: 18px;
+    margin-top: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.details-box {
+    background: rgba(255,255,255,0.8);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 3px dashed #ff4081;
+}
+
+.party-details p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.rsvp {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+/* Добавляем конфетти анимацию */
+@keyframes confetti {
+    0% { transform: translateY(0) rotate(0); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 20px;
+}
+
+.invitation-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.seal {
+    width: 120px;
+    height: 120px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.seal:hover {
+    transform: scale(1.05);
+}
+
+.initials {
+    font-size: 2em;
+    color: #333;
+    font-weight: bold;
+}
+
+.content {
+    margin-top: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hidden {
+    display: none;
+}
+
+.names {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: normal;
+}
+
+.invitation-text {
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+.details {
+    margin-top: 40px;
+    line-height: 1.8;
+}
+
+.date {
+    font-size: 1.5em;
+    color: #333;
+    margin: 20px 0;
+}
+
+.location {
+    font-size: 1.3em;
+    color: #444;
+}
+
+.address {
+    color: #666;
+    margin-top: 10px;
+}
+
+@keyframes sealClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+} 
