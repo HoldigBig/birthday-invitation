@@ -1,28 +1,89 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const seal = document.getElementById('seal');
-    const content = document.querySelector('.content');
-    let isRevealed = false;
+    const envelope = document.querySelector('.envelope');
+    const bgMusic = document.getElementById('bgMusic');
+    const soundBtn = document.querySelector('.sound-btn');
+    let isMuted = false;
+    let musicStarted = false;
 
-    seal.addEventListener('click', () => {
-        if (!isRevealed) {
-            // Анимация печати
-            seal.style.animation = 'sealClick 0.3s ease';
-            
-            // После анимации печати показываем контент
-            setTimeout(() => {
-                content.classList.remove('hidden');
-                setTimeout(() => {
-                    content.classList.add('show');
-                }, 50);
-            }, 300);
+    // Инициализация звука
+    bgMusic.volume = 0.5;
+    
+    // Предварительная загрузка аудио
+    bgMusic.load();
 
-            isRevealed = true;
+    // Обработчик клика по конверту
+    envelope.addEventListener('click', () => {
+        envelope.classList.add('open');
+        
+        // Начинаем воспроизведение музыки при первом открытии
+        if (!musicStarted && !isMuted) {
+            startMusic();
         }
     });
 
-    // Сброс анимации печати
-    seal.addEventListener('animationend', () => {
-        seal.style.animation = '';
+    // Функция запуска музыки
+    function startMusic() {
+        const playPromise = bgMusic.play();
+        
+        if (playPromise !== undefined) {
+            playPromise
+                .then(() => {
+                    musicStarted = true;
+                    soundBtn.querySelector('i').className = 'fas fa-volume-up';
+                    soundBtn.classList.remove('muted');
+                })
+                .catch(error => {
+                    console.log("Autoplay prevented:", error);
+                    // Если автовоспроизведение заблокировано, показываем кнопку воспроизведения
+                    soundBtn.querySelector('i').className = 'fas fa-volume-mute';
+                    soundBtn.classList.add('muted');
+                    isMuted = true;
+                });
+        }
+    }
+
+    // Управление звуком
+    soundBtn.addEventListener('click', () => {
+        if (isMuted) {
+            const playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        soundBtn.querySelector('i').className = 'fas fa-volume-up';
+                        isMuted = false;
+                        musicStarted = true;
+                    })
+                    .catch(error => {
+                        console.log("Playback prevented:", error);
+                    });
+            }
+        } else {
+            bgMusic.pause();
+            soundBtn.querySelector('i').className = 'fas fa-volume-mute';
+            isMuted = true;
+        }
+        soundBtn.classList.toggle('muted');
+    });
+
+    // Обработка событий аудио
+    bgMusic.addEventListener('play', () => {
+        soundBtn.querySelector('i').className = 'fas fa-volume-up';
+        soundBtn.classList.remove('muted');
+        isMuted = false;
+    });
+
+    bgMusic.addEventListener('pause', () => {
+        soundBtn.querySelector('i').className = 'fas fa-volume-mute';
+        soundBtn.classList.add('muted');
+        isMuted = true;
+    });
+
+    // Обработка ошибок загрузки аудио
+    bgMusic.addEventListener('error', (e) => {
+        console.log("Error loading audio:", e);
+        soundBtn.querySelector('i').className = 'fas fa-volume-mute';
+        soundBtn.classList.add('muted');
+        isMuted = true;
     });
 });
 
@@ -41,56 +102,6 @@ function createStars() {
 
 document.addEventListener('DOMContentLoaded', createStars);
 
-// Анимация открытия карточки
-document.querySelector('.card').addEventListener('click', function() {
-    this.classList.toggle('open');
-    
-    // Создаем конфетти при открытии
-    if (this.classList.contains('open')) {
-        createConfetti();
-        playSound();
-    }
-});
-
-// Функция создания конфетти
-function createConfetti() {
-    for (let i = 0; i < 50; i++) {
-        const confetti = document.createElement('div');
-        confetti.style.cssText = `
-            position: fixed;
-            width: 10px;
-            height: 10px;
-            background: ${getRandomColor()};
-            left: ${Math.random() * 100}vw;
-            top: -20px;
-            animation: confetti ${2 + Math.random() * 2}s linear forwards;
-            transform: rotate(${Math.random() * 360}deg);
-        `;
-        document.body.appendChild(confetti);
-        
-        // Удаляем конфетти после анимации
-        setTimeout(() => {
-            confetti.remove();
-        }, 4000);
-    }
-}
-
-// Функция получения случайного цвета
-function getRandomColor() {
-    const colors = [
-        '#ff4081', '#64b5f6', '#81c784', '#ffd54f', '#ff8a65',
-        '#ba68c8', '#4db6ac', '#fff176', '#f06292', '#7986cb'
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
-}
-
-// Функция воспроизведения звука
-function playSound() {
-    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3');
-    audio.volume = 0.5;
-    audio.play().catch(err => console.log('Audio autoplay was prevented'));
-}
-
 // Анимация при наведении на элементы развлечений
 document.querySelectorAll('.entertainment-item').forEach(item => {
     item.addEventListener('mouseenter', function() {
@@ -101,6 +112,58 @@ document.querySelectorAll('.entertainment-item').forEach(item => {
         this.style.transform = 'translateY(0) scale(1)';
     });
 });
+
+// Функция создания конфетти
+function createConfetti() {
+    for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        const colors = [
+            '#ff4081', '#64b5f6', '#81c784', '#ffd54f', '#ff8a65',
+            '#ba68c8', '#4db6ac', '#fff176', '#f06292', '#7986cb'
+        ];
+        
+        confetti.style.cssText = `
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: ${colors[Math.floor(Math.random() * colors.length)]};
+            left: ${Math.random() * 100}vw;
+            top: -20px;
+            animation: confetti ${2 + Math.random() * 2}s linear forwards;
+            transform: rotate(${Math.random() * 360}deg);
+            z-index: 1000;
+        `;
+
+        // Добавляем keyframes для конфетти
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confetti {
+                0% { 
+                    transform: translateY(0) rotate(${Math.random() * 360}deg);
+                    opacity: 1;
+                }
+                100% { 
+                    transform: translateY(100vh) rotate(${Math.random() * 720}deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => {
+            confetti.remove();
+            style.remove();
+        }, 4000);
+    }
+}
+
+// Функция воспроизведения звука
+function playSound() {
+    const audio = new Audio('https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3');
+    audio.volume = 0.5;
+    audio.play().catch(err => console.log('Audio autoplay was prevented'));
+}
 
 // Функция для добавления фотографий
 function addPhoto(input, target) {
@@ -124,15 +187,13 @@ function addPhoto(input, target) {
     }
 }
 
-// Добавляем обработчики для плейсхолдеров фотографий
-document.querySelectorAll('.photo-placeholder').forEach(placeholder => {
-    placeholder.addEventListener('click', () => {
-        const input = document.createElement('input');
-        input.type = 'file';
-        input.accept = 'image/*';
-        input.onchange = function() {
-            addPhoto(this, placeholder.parentElement);
-        };
-        input.click();
-    });
+// Добавляем обработчики для плейсхолдера фотографии
+document.querySelector('.photo-placeholder').addEventListener('click', () => {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = function() {
+        addPhoto(this, document.querySelector('.main-photo'));
+    };
+    input.click();
 }); 

@@ -8,100 +8,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <div class="stars"></div>
-    <div class="card">
-        <div class="card-front">
-            <div class="front-content">
-                <div class="crown"></div>
-                <h1>Приглашение на День Рождения!</h1>
-                <div class="main-photo">
-                    <!-- Здесь будет главное фото именинника -->
-                    <div class="photo-placeholder">
-                        <i class="fas fa-image"></i>
-                        <p>Добавьте фото именинника</p>
-                    </div>
+    <audio id="bgMusic" loop>
+        <source src="Ajjdyn8_-_Moge_oglum_66630491.mp3" type="audio/mp3">
+    </audio>
+    
+    <div class="sound-control">
+        <button class="sound-btn">
+            <i class="fas fa-volume-up"></i>
+        </button>
+    </div>
+
+    <div class="envelope-wrapper">
+        <div class="envelope">
+            <!-- Верхний клапан конверта -->
+            <div class="flap"></div>
+            
+            <!-- Левый клапан -->
+            <div class="left-fold"></div>
+            
+            <!-- Правый клапан -->
+            <div class="right-fold"></div>
+            
+            <!-- Нижний клапан -->
+            <div class="bottom-fold"></div>
+
+            <!-- Основная часть конверта -->
+            <div class="envelope-base"></div>
+
+            <!-- Мишка-печать -->
+            <div class="bear-stamp">
+                <div class="bear">
+                    <!-- Милый мишка -->
+                    <div class="bear-face"></div>
+                    <div class="bear-ears"></div>
+                    <div class="bear-bow"></div>
                 </div>
-                <div class="balloon-container">
-                    <div class="balloon"></div>
-                    <div class="balloon"></div>
-                    <div class="balloon"></div>
+                <div class="hearts">
+                    <span>♥</span>
+                    <span>♥</span>
+                    <span>♥</span>
                 </div>
-                <p class="click-me">Нажми, чтобы открыть!</p>
             </div>
-        </div>
-        <div class="card-inside">
-            <div class="inside-content">
-                <h2>Ура! Мне исполняется 3 года!</h2>
-                <div class="party-details">
-                    <p class="special-text">Дорогие друзья!</p>
-                    <p>Приглашаю вас на свой День Рождения!</p>
-                    <div class="details-box">
-                        <p><i class="fas fa-calendar-alt"></i> Когда: [Дата и время]</p>
-                        <p><i class="fas fa-map-marker-alt"></i> Где: [Адрес]</p>
-                        <p><i class="fas fa-gift"></i> Будет много веселья, игр и вкусностей!</p>
-                    </div>
+
+            <!-- Письмо -->
+            <div class="letter">
+                <div class="letter-content">
+                    <h1>Приглашение</h1>
                     
-                    <div class="photo-gallery">
-                        <h3>Мои любимые моменты</h3>
-                        <div class="gallery-grid">
-                            <!-- Плейсхолдеры для фотографий -->
-                            <div class="photo-item">
-                                <div class="photo-placeholder">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            </div>
-                            <div class="photo-item">
-                                <div class="photo-placeholder">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            </div>
-                            <div class="photo-item">
-                                <div class="photo-placeholder">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            </div>
-                            <div class="photo-item">
-                                <div class="photo-placeholder">
-                                    <i class="fas fa-image"></i>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Фото именинника -->
+                    <div class="birthday-photo">
+                        <img src="q95qhxxqKYs.png" alt="Именинник">
                     </div>
 
-                    <div class="entertainment-section">
-                        <h3>Что нас ждёт?</h3>
-                        <div class="entertainment-items">
-                            <div class="entertainment-item">
-                                <i class="fas fa-birthday-cake"></i>
-                                <p>Вкусный торт</p>
-                            </div>
-                            <div class="entertainment-item">
-                                <i class="fas fa-gamepad"></i>
-                                <p>Весёлые игры</p>
-                            </div>
-                            <div class="entertainment-item">
-                                <i class="fas fa-magic"></i>
-                                <p>Сюрпризы</p>
-                            </div>
-                            <div class="entertainment-item">
-                                <i class="fas fa-music"></i>
-                                <p>Музыка и танцы</p>
-                            </div>
-                        </div>
+                    <div class="tuvan-text">
+                        <p>Чараш бойдус частып орар часкы хунде,<br>
+                        Чаптанчыг чаш оглувустун хылбыы болур!<br>
+                        Аалдап келгеш, йорээл состен сонневишаан,<br>
+                        Аяк-шайдан, ырлап-самнап келинерем!</p>
+
+                        <p>Оран-чурттун алдаржыдар моге кылдыр,<br>
+                        Оор-чонун хуннун оортуп чоруур кылдыр<br>
+                        Олчей-кежиин ооскудуп мактаалынар!</p>
+
+                        <p>Кузелдерин боттандырар хылбык-дойже<br>
+                        Кудук базып чалап тур бис, моорланарам!</p>
                     </div>
 
-                    <p class="rsvp">
-                        <i class="fas fa-phone"></i>
-                        Пожалуйста, подтвердите своё присутствие по телефону: [номер телефона]
-                    </p>
+                    <div class="details-box">
+                        <p><i class="fas fa-calendar-alt"></i> Болур хуну: 2025 чылдын май 7</p>
+                        <p><i class="fas fa-clock"></i> Эгелэри: 16:30 шак</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Болур чери: г.Кызыл ул.Калинина д17</p>
+                        <p><i class="fas fa-home"></i> Байыр-дой оргээзи «Империя» (глазной эмчи дужунда)</p>
+                    </div>
 
-                    <div class="dress-code">
-                        <h3><i class="fas fa-tshirt"></i> Дресс-код</h3>
-                        <p>Яркая и удобная одежда для весёлых игр!</p>
+                    <div class="contact-info">
+                        <p class="special-text">Хундуткел-биле:</p>
+                        <p><i class="fas fa-user"></i> ачазы Григорий <i class="fas fa-phone"></i> 89233811001</p>
+                        <p><i class="fas fa-user"></i> авазы Алдынай <i class="fas fa-phone"></i> 89012397480 Ооржак</p>
                     </div>
                 </div>
             </div>
         </div>
+        <p class="click-hint">Нажми, чтобы открыть!</p>
     </div>
     <script src="script.js"></script>
 </body>

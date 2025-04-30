@@ -11,88 +11,373 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    background: linear-gradient(135deg, #1a1b4b, #4b1942);
     font-family: 'Comic Neue', cursive;
     padding: 20px;
+    perspective: 1000px;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-/* Звёздное небо */
-.stars {
+body::before {
+    content: '';
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 200px 20px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 240px 60px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 280px 100px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 320px 40px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    animation: twinkle 4s infinite;
     pointer-events: none;
-    background: transparent;
 }
 
-.stars::before {
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 33%;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 100px 150px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 50px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 180px 190px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 220px 90px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 260px 170px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 300px 120px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 340px 80px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 380px 140px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 420px 60px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 460px 160px, #ffffff, rgba(0,0,0,0));
+    background-repeat: repeat;
+    animation: twinkle 6s infinite;
+    animation-delay: 2s;
+    pointer-events: none;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 900px;
+    aspect-ratio: 1.6/1;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+/* Основа конверта */
+.envelope-base {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #ffcdd2;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    z-index: 1;
+}
+
+/* Клапаны конверта */
+.flap {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    top: 0;
+    background: #ff94a0;
+    transform-origin: top;
+    transition: transform 0.6s ease, opacity 0.3s ease;
+    z-index: 2;
+    transform-style: preserve-3d;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    opacity: 1;
+}
+
+.left-fold {
+    display: none;
+}
+
+.right-fold {
+    display: none;
+}
+
+.bottom-fold {
+    display: none;
+}
+
+/* Мишка на конверте */
+.bear-stamp {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    z-index: 999;
+    transition: opacity 0.3s ease;
+}
+
+.envelope.open .bear-stamp {
+    opacity: 0;
+}
+
+.bear {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.bear-face {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: #ffffff;
+    border: 4px solid #ff94a0;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.bear-face::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #ff94a0;
+    border-radius: 50%;
+    top: 40%;
+    left: 25%;
+    box-shadow: 35px 0 #ff94a0;
+}
+
+.bear-face::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 15px;
+    background: #ff94a0;
+    border-radius: 0 0 10px 10px;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bear-ears {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 0;
+}
+
+.bear-ears::before,
+.bear-ears::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #ffffff;
+    border: 4px solid #ff94a0;
+    border-radius: 50%;
+}
+
+.bear-ears::before {
+    left: 20px;
+}
+
+.bear-ears::after {
+    right: 20px;
+}
+
+.bear-bow {
+    position: absolute;
+    width: 40px;
+    height: 20px;
+    background: #ff4081;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+}
+
+.bear-bow::before,
+.bear-bow::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #ff4081;
+    border-radius: 50% 50% 0 50%;
+    top: -10px;
+}
+
+.bear-bow::before {
+    left: -10px;
+    transform: rotate(-45deg);
+}
+
+.bear-bow::after {
+    right: -10px;
+    transform: rotate(45deg);
+}
+
+/* Дополнительные эффекты */
+.envelope-base::after {
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.hearts {
+    position: absolute;
+    top: -30px;
+    right: -20px;
+    color: #ff4081;
+    font-size: 20px;
+}
+
+.hearts span {
+    margin: 0 2px;
+    animation: float 2s infinite ease-in-out;
+}
+
+.hearts span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.hearts span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Письмо */
+.letter {
+    position: absolute;
+    width: 98%;
+    height: 98%;
+    left: 1%;
+    top: 1%;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    transform: translateZ(1px) translateY(20px);
+    transition: all 0.6s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    z-index: 3;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.envelope.open .letter {
+    transform: translateZ(100px) translateY(0);
+    transition-delay: 0.4s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.letter-content {
+    position: relative;
+    padding: 30px;
+    text-align: center;
+}
+
+.envelope.open .letter-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+}
+
+.click-hint {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffffff;
+    font-size: 1.2em;
+    animation: pulse 2s infinite;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+}
+
+.envelope.open ~ .click-hint {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(20px);
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% { transform: translateX(-50%) scale(1); opacity: 1; }
+    50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* Анимации открытия */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    transition-delay: 0.1s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Дополнительные эффекты для реалистичности */
+.envelope:hover {
+    transform: translateY(-5px);
+}
+
+.envelope::before {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
-    background-image: radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
-                      radial-gradient(2px 2px at 40px 70px, #ffffff, rgba(0,0,0,0)),
-                      radial-gradient(2px 2px at 50px 160px, #ffffff, rgba(0,0,0,0)),
-                      radial-gradient(2px 2px at 90px 40px, #ffffff, rgba(0,0,0,0)),
-                      radial-gradient(2px 2px at 130px 80px, #ffffff, rgba(0,0,0,0));
-    background-repeat: repeat;
-    background-size: 200px 200px;
-    animation: twinkle 4s infinite;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.8; }
-    50% { opacity: 0.5; }
-}
-
-.card {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    min-height: 500px;
-    perspective: 1500px;
-    cursor: pointer;
-}
-
-.card-front, .card-inside {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    transition: transform 1s ease;
+    background: rgba(255,255,255,0.1);
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    opacity: 0;
     border-radius: 20px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
-.card-front {
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    border: 8px solid #fff;
-    overflow: hidden;
+.envelope:hover::before {
+    opacity: 1;
 }
 
-.crown {
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 60px;
-    background: #ffd700;
-    clip-path: polygon(50% 0%, 80% 30%, 100% 30%, 100% 70%, 80% 70%, 50% 100%, 20% 70%, 0 70%, 0 30%, 20% 30%);
+h1, h2 {
+    font-family: 'Bubblegum Sans', cursive;
+    color: #ff4081;
+    margin-bottom: 20px;
 }
 
-.front-content {
-    padding: 20px;
-    width: 100%;
-}
+h1 { font-size: 2.5em; }
+h2 { font-size: 2em; }
 
 .main-photo {
     width: 200px;
@@ -100,19 +385,19 @@ body {
     margin: 20px auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #fff;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border: 5px solid #ffcdd2;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 .photo-placeholder {
     width: 100%;
     height: 100%;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,192,203,0.2);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #ff4081;
 }
 
 .photo-placeholder i {
@@ -120,143 +405,67 @@ body {
     margin-bottom: 10px;
 }
 
-.card-inside {
-    background: linear-gradient(45deg, #a8edea, #fed6e3);
-    transform: rotateY(-180deg);
-    padding: 30px;
-    border: 8px solid #fff;
-    overflow-y: auto;
-}
-
-.card.open .card-front {
-    transform: rotateY(180deg);
-}
-
-.card.open .card-inside {
-    transform: rotateY(0);
-}
-
-h1, h2, h3 {
-    font-family: 'Bubblegum Sans', cursive;
-    color: #ff4081;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-}
-
-h1 { font-size: 2.5em; }
-h2 { font-size: 2em; }
-h3 { font-size: 1.5em; margin: 20px 0; }
-
-.balloon-container {
-    display: flex;
-    justify-content: space-around;
-    margin: 20px 0;
-}
-
-.balloon {
-    width: 40px;
-    height: 50px;
-    position: relative;
-    animation: float 3s ease-in-out infinite;
-}
-
-.balloon:nth-child(1) { background: #ff4081; }
-.balloon:nth-child(2) { background: #64b5f6; animation-delay: 0.2s; }
-.balloon:nth-child(3) { background: #81c784; animation-delay: 0.4s; }
-
-.balloon::before {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 2px;
-    height: 20px;
-    background: #666;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
-}
-
-.click-me {
-    color: white;
-    font-size: 1.2em;
-    margin-top: 20px;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-
-.details-box {
-    background: rgba(255,255,255,0.9);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px 0;
-    border: 3px dashed #ff4081;
-}
-
-.details-box p {
-    margin: 10px 0;
-    font-size: 1.1em;
-    display: flex;
-    align-items: center;
-}
-
-.details-box i {
-    margin-right: 10px;
-    color: #ff4081;
-}
-
-.photo-gallery {
-    margin: 30px 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.photo-item {
-    aspect-ratio: 1;
-    border-radius: 10px;
+/* Стили для фото именинника */
+.birthday-photo {
+    width: 250px;
+    height: 250px;
+    margin: 30px auto;
+    border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: 5px solid #ff94a0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    position: relative;
 }
 
-.entertainment-section {
-    margin: 30px 0;
-}
-
-.entertainment-items {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.entertainment-item {
-    text-align: center;
-    padding: 15px;
-    background: rgba(255,255,255,0.9);
-    border-radius: 10px;
+.birthday-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-.entertainment-item:hover {
-    transform: translateY(-5px);
+.birthday-photo:hover img {
+    transform: scale(1.1);
 }
 
-.entertainment-item i {
-    font-size: 2em;
+/* Обновленные стили для деталей */
+.details-box {
+    background: rgba(255,192,203,0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    border: 3px dashed #ff94a0;
+}
+
+.details-box p {
+    margin: 15px 0;
+    font-size: 1.1em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.details-box i {
     color: #ff4081;
-    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+.contact-info {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.contact-info i {
+    color: #ff4081;
 }
 
 .special-text {
@@ -275,33 +484,471 @@ h3 { font-size: 1.5em; margin: 20px 0; }
     text-align: center;
 }
 
-.rsvp i {
-    margin-right: 10px;
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
-.dress-code {
-    background: rgba(255,255,255,0.9);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-    text-align: center;
-}
-
-@media (max-width: 600px) {
-    .card {
-        min-height: 400px;
+@media (max-width: 768px) {
+    .envelope-wrapper {
+        width: 95%;
     }
-    
+
     h1 { font-size: 2em; }
-    h2 { font-size: 1.5em; }
-    h3 { font-size: 1.2em; }
-    
+    h2 { font-size: 1.6em; }
+
     .main-photo {
         width: 150px;
         height: 150px;
     }
-    
-    .gallery-grid {
+
+    .bear-stamp {
+        width: 120px;
+        height: 120px;
+    }
+
+    .details-box {
+        padding: 15px;
+    }
+
+    .entertainment-items {
         grid-template-columns: repeat(2, 1fr);
     }
-} 
+}
+
+/* Эффект печати */
+.bear-stamp::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.bear-stamp::after {
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border: 2px dashed rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+/* Звездное небо */
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* Управление звуком */
+.sound-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.sound-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5em;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.sound-btn.muted i::before {
+    content: "\f6a9";
+}
+
+/* Улучшенные декоративные лошадки */
+.horses-decoration {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.horse {
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><path d="M90,30 C80,30 75,25 70,20 C65,15 60,10 50,10 C40,10 35,15 30,20 C25,25 20,30 10,30 C15,40 25,45 35,45 C45,45 50,40 55,35 C60,30 65,25 75,25 C85,25 90,30 90,30 Z" fill="%23ff94a0"/></svg>');
+    background-repeat: no-repeat;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+@keyframes gallopLeft {
+    0% {
+        transform: translateX(-100%) scaleX(-1) translateY(0);
+    }
+    25% {
+        transform: translateX(-50%) scaleX(-1) translateY(-20px) rotate(-5deg);
+    }
+    50% {
+        transform: translateX(0%) scaleX(-1) translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateX(50%) scaleX(-1) translateY(-20px) rotate(5deg);
+    }
+    100% {
+        transform: translateX(100%) scaleX(-1) translateY(0);
+    }
+}
+
+@keyframes gallopRight {
+    0% {
+        transform: translateX(100%) translateY(0);
+    }
+    25% {
+        transform: translateX(50%) translateY(-20px) rotate(5deg);
+    }
+    50% {
+        transform: translateX(0%) translateY(0) rotate(0deg);
+    }
+    75% {
+        transform: translateX(-50%) translateY(-20px) rotate(-5deg);
+    }
+    100% {
+        transform: translateX(-100%) translateY(0);
+    }
+}
+
+.horse-left {
+    left: -100px;
+    animation: gallopLeft 8s linear infinite;
+}
+
+.horse-right {
+    right: -100px;
+    animation: gallopRight 8s linear infinite;
+}
+
+/* Декоративные элементы */
+.letter-content::before,
+.letter-content::after {
+    content: '❀';
+    position: absolute;
+    font-size: 2em;
+    color: #ff94a0;
+    animation: rotatePetal 4s linear infinite;
+}
+
+.letter-content::before {
+    top: 20px;
+    left: 20px;
+}
+
+.letter-content::after {
+    bottom: 20px;
+    right: 20px;
+}
+
+@keyframes rotatePetal {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Декоративная рамка */
+.tuvan-text {
+    position: relative;
+    padding: 30px;
+    margin: 20px 0;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Убираем точки */
+.tuvan-text::before,
+.tuvan-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30px;
+    right: 0%;
+    left: auto;
+}
+
+.tuvan-text::before {
+    top: 0;
+    background: 
+        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+}
+
+.tuvan-text::after {
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+}
+
+/* Анимация для деталей */
+.details-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.details-box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* Анимация для иконок */
+.details-box i,
+.contact-info i {
+    display: inline-block;
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+/* Анимированные звёздочки */
+.letter-content {
+    position: relative;
+}
+
+@keyframes twinkleStar {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.star {
+    position: absolute;
+    color: #ff4081;
+    font-size: 1.2em;
+    animation: twinkleStar 2s infinite;
+}
+
+.letter-content::after {
+    content: '✦';
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    animation: twinkleStar 2s infinite;
+}
+
+/* Добавляем звёздочки через псевдоэлементы */
+.details-box::before {
+    content: '✦';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #ff4081;
+    animation: twinkleStar 2s infinite 0.5s;
+}
+
+.contact-info::before {
+    content: '✦';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #ff4081;
+    animation: twinkleStar 2s infinite 1s;
+}
+
+/* Декоративные элементы по бокам */
+.letter-content {
+    position: relative;
+    padding: 0 60px;
+}
+
+/* Облака */
+.letter-content::before,
+.letter-content::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 148, 160, 0.2);
+    border-radius: 50%;
+    animation: floatCloud 4s ease-in-out infinite;
+}
+
+.letter-content::before {
+    left: 10px;
+    top: 20%;
+    box-shadow: 
+        15px -15px rgba(255, 148, 160, 0.2),
+        30px 0 rgba(255, 148, 160, 0.2);
+}
+
+.letter-content::after {
+    right: 10px;
+    top: 20%;
+    box-shadow: 
+        -15px -15px rgba(255, 148, 160, 0.2),
+        -30px 0 rgba(255, 148, 160, 0.2);
+}
+
+@keyframes floatCloud {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Декоративные лошади */
+.horses-decoration {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    margin: 20px 0;
+    overflow: hidden;
+}
+
+.horse {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 60"><path d="M90,30 C80,30 75,25 70,20 C65,15 60,10 50,10 C40,10 35,15 30,20 C25,25 20,30 10,30 C15,40 25,45 35,45 C45,45 50,40 55,35 C60,30 65,25 75,25 C85,25 90,30 90,30 Z" fill="%23ff94a0"/></svg>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.2));
+}
+
+.horse-1 { animation: gallop1 12s linear infinite; top: 20px; }
+.horse-2 { animation: gallop2 12s linear infinite; top: 60px; animation-delay: -4s; }
+.horse-3 { animation: gallop1 12s linear infinite; top: 100px; animation-delay: -8s; }
+
+@keyframes gallop1 {
+    0% { left: -60px; transform: scaleX(1); }
+    45% { left: calc(100% + 60px); transform: scaleX(1); }
+    50% { left: calc(100% + 60px); transform: scaleX(-1); }
+    95% { left: -60px; transform: scaleX(-1); }
+    100% { left: -60px; transform: scaleX(1); }
+}
+
+@keyframes gallop2 {
+    0% { right: -60px; transform: scaleX(-1); }
+    45% { right: calc(100% + 60px); transform: scaleX(-1); }
+    50% { right: calc(100% + 60px); transform: scaleX(1); }
+    95% { right: -60px; transform: scaleX(1); }
+    100% { right: -60px; transform: scaleX(-1); }
+}
+
+/* Декоративные узоры */
+.tuvan-text {
+    position: relative;
+    padding: 30px;
+    margin: 20px 0;
+}
+
+.tuvan-text::before,
+.tuvan-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 30px;
+}
+
+.tuvan-text::before {
+    top: 0;
+    background: 
+        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+}
+
+.tuvan-text::after {
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+}
+
+/* Боковые орнаменты */
+.side-ornaments {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    pointer-events: none;
+}
+
+.side-ornaments::before,
+.side-ornaments::after {
+    content: '❀';
+    position: absolute;
+    font-size: 24px;
+    color: #ff94a0;
+    animation: rotatePetal 4s linear infinite;
+}
+
+.side-ornaments::before {
+    top: 25%;
+}
+
+.side-ornaments::after {
+    bottom: 25%;
+}
+
+.side-ornaments-left {
+    left: 10px;
+}
+
+.side-ornaments-right {
+    right: 10px;
+}
+
+/* Декоративные звезды */
+.star-decoration {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ff94a0;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    animation: twinkleStar 2s infinite;
+}
+
+.star-1 { top: 10%; left: 5%; animation-delay: 0s; }
+.star-2 { top: 20%; right: 5%; animation-delay: 0.5s; }
+.star-3 { bottom: 20%; left: 5%; animation-delay: 1s; }
+.star-4 { bottom: 10%; right: 5%; animation-delay: 1.5s; }
+
+/* Обновляем анимацию мерцания */
+@keyframes twinkleStar {
+    0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    50% { opacity: 0.5; transform: scale(0.8) rotate(180deg); }
+}
+
+/* Добавляем HTML для новых элементов */ 
