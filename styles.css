@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #1a1b4b, #4b1942);
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
     font-family: 'Comic Neue', cursive;
     padding: 20px;
     perspective: 1000px;
@@ -88,7 +88,7 @@ body::after {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: #ffcdd2;
+    background: #bbdefb;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     overflow: hidden;
@@ -102,7 +102,7 @@ body::after {
     width: 100%;
     height: 50%;
     top: 0;
-    background: #ff94a0;
+    background: #64b5f6;
     transform-origin: top;
     transition: transform 0.6s ease, opacity 0.3s ease;
     z-index: 2;
@@ -150,7 +150,7 @@ body::after {
     width: 100px;
     height: 100px;
     background: #ffffff;
-    border: 4px solid #ff94a0;
+    border: 4px solid #42a5f5;
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -162,11 +162,11 @@ body::after {
     position: absolute;
     width: 12px;
     height: 12px;
-    background: #ff94a0;
+    background: #42a5f5;
     border-radius: 50%;
     top: 40%;
     left: 25%;
-    box-shadow: 35px 0 #ff94a0;
+    box-shadow: 35px 0 #42a5f5;
 }
 
 .bear-face::after {
@@ -174,7 +174,7 @@ body::after {
     position: absolute;
     width: 20px;
     height: 15px;
-    background: #ff94a0;
+    background: #42a5f5;
     border-radius: 0 0 10px 10px;
     bottom: 25%;
     left: 50%;
@@ -195,7 +195,7 @@ body::after {
     width: 30px;
     height: 30px;
     background: #ffffff;
-    border: 4px solid #ff94a0;
+    border: 4px solid #42a5f5;
     border-radius: 50%;
 }
 
@@ -211,7 +211,7 @@ body::after {
     position: absolute;
     width: 40px;
     height: 20px;
-    background: #ff4081;
+    background: #1976d2;
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
@@ -224,7 +224,7 @@ body::after {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: #ff4081;
+    background: #1976d2;
     border-radius: 50% 50% 0 50%;
     top: -10px;
 }
@@ -257,7 +257,7 @@ body::after {
     position: absolute;
     top: -30px;
     right: -20px;
-    color: #ff4081;
+    color: #2196f3;
     font-size: 20px;
 }
 
@@ -372,7 +372,7 @@ body::after {
 
 h1, h2 {
     font-family: 'Bubblegum Sans', cursive;
-    color: #ff4081;
+    color: #1976d2;
     margin-bottom: 20px;
 }
 
@@ -385,7 +385,7 @@ h2 { font-size: 2em; }
     margin: 20px auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #ffcdd2;
+    border: 5px solid #bbdefb;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
@@ -397,7 +397,7 @@ h2 { font-size: 2em; }
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #ff4081;
+    color: #64b5f6;
 }
 
 .photo-placeholder i {
@@ -414,7 +414,7 @@ h2 { font-size: 2em; }
     margin: 30px auto;
     border-radius: 50%;
     overflow: hidden;
-    border: 5px solid #ff94a0;
+    border: 5px solid #64b5f6;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     position: relative;
 }
@@ -432,11 +432,11 @@ h2 { font-size: 2em; }
 
 /* Обновленные стили для деталей */
 .details-box {
-    background: rgba(255,192,203,0.1);
+    background: rgba(33, 150, 243, 0.1);
     border-radius: 15px;
     padding: 20px;
     margin: 20px 0;
-    border: 3px dashed #ff94a0;
+    border: 3px dashed #64b5f6;
 }
 
 .details-box p {
@@ -449,7 +449,7 @@ h2 { font-size: 2em; }
 }
 
 .details-box i {
-    color: #ff4081;
+    color: #1976d2;
     font-size: 1.2em;
 }
 
@@ -467,18 +467,18 @@ h2 { font-size: 2em; }
 }
 
 .contact-info i {
-    color: #ff4081;
+    color: #1976d2;
 }
 
 .special-text {
     font-size: 1.3em;
-    color: #ff4081;
+    color: #1976d2;
     font-weight: bold;
     margin: 20px 0;
 }
 
 .rsvp {
-    background: #ff4081;
+    background: #64b5f6;
     color: white;
     padding: 15px;
     border-radius: 10px;
@@ -695,7 +695,7 @@ h2 { font-size: 2em; }
     content: '❀';
     position: absolute;
     font-size: 2em;
-    color: #ff94a0;
+    color: #64b5f6;
     animation: rotatePetal 4s linear infinite;
 }
 
@@ -738,15 +738,15 @@ h2 { font-size: 2em; }
 .tuvan-text::before {
     top: 0;
     background: 
-        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
-        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+        radial-gradient(circle at 25% 50%, #64b5f6 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #64b5f6 2px, transparent 3px) 10px 0/20px 100%;
 }
 
 .tuvan-text::after {
     bottom: 0;
     background: 
-        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
-        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+        radial-gradient(circle at 25% 50%, #64b5f6 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #64b5f6 2px, transparent 3px) 10px 0/20px 100%;
 }
 
 /* Анимация для деталей */
@@ -800,7 +800,7 @@ h2 { font-size: 2em; }
 
 .star {
     position: absolute;
-    color: #ff4081;
+    color: #64b5f6;
     font-size: 1.2em;
     animation: twinkleStar 2s infinite;
 }
@@ -819,7 +819,7 @@ h2 { font-size: 2em; }
     position: absolute;
     top: 10px;
     left: 10px;
-    color: #ff4081;
+    color: #64b5f6;
     animation: twinkleStar 2s infinite 0.5s;
 }
 
@@ -828,7 +828,7 @@ h2 { font-size: 2em; }
     position: absolute;
     bottom: 10px;
     right: 10px;
-    color: #ff4081;
+    color: #64b5f6;
     animation: twinkleStar 2s infinite 1s;
 }
 
@@ -928,15 +928,15 @@ h2 { font-size: 2em; }
 .tuvan-text::before {
     top: 0;
     background: 
-        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
-        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+        radial-gradient(circle at 25% 50%, #64b5f6 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #64b5f6 2px, transparent 3px) 10px 0/20px 100%;
 }
 
 .tuvan-text::after {
     bottom: 0;
     background: 
-        radial-gradient(circle at 25% 50%, #ff94a0 2px, transparent 3px) 0 0/20px 100%,
-        radial-gradient(circle at 75% 50%, #ff94a0 2px, transparent 3px) 10px 0/20px 100%;
+        radial-gradient(circle at 25% 50%, #64b5f6 2px, transparent 3px) 0 0/20px 100%,
+        radial-gradient(circle at 75% 50%, #64b5f6 2px, transparent 3px) 10px 0/20px 100%;
 }
 
 /* Боковые орнаменты */
@@ -953,7 +953,7 @@ h2 { font-size: 2em; }
     content: '❀';
     position: absolute;
     font-size: 24px;
-    color: #ff94a0;
+    color: #64b5f6;
     animation: rotatePetal 4s linear infinite;
 }
 
@@ -978,7 +978,7 @@ h2 { font-size: 2em; }
     position: absolute;
     width: 10px;
     height: 10px;
-    background: #ff94a0;
+    background: #64b5f6;
     clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     animation: twinkleStar 2s infinite;
 }
