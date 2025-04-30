@@ -951,4 +951,294 @@ h2 { font-size: 2em; }
     50% { opacity: 0.5; transform: scale(0.8) rotate(180deg); }
 }
 
-/* Добавляем HTML для новых элементов */ 
+/* Добавляем HTML для новых элементов */
+
+/* Адаптивные стили */
+@media (max-width: 1024px) {
+    .envelope-wrapper {
+        width: 95%;
+        max-width: 800px;
+    }
+
+    .birthday-photo {
+        width: 200px;
+        height: 200px;
+    }
+
+    h1 { 
+        font-size: 2.2em; 
+    }
+
+    .tuvan-text {
+        font-size: 1.1em;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .envelope-wrapper {
+        width: 95%;
+        aspect-ratio: 1.2/1;
+    }
+
+    .birthday-photo {
+        width: 180px;
+        height: 180px;
+    }
+
+    h1 { 
+        font-size: 2em;
+        margin: 15px 0;
+    }
+
+    .tuvan-text {
+        font-size: 1em;
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .details-box {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .details-box p {
+        font-size: 1em;
+    }
+
+    .contact-info p {
+        font-size: 0.9em;
+    }
+
+    .letter {
+        padding: 20px;
+    }
+
+    .letter-content {
+        padding: 15px;
+    }
+
+    .bear-stamp {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .envelope-wrapper {
+        width: 100%;
+        aspect-ratio: 1/1;
+    }
+
+    .birthday-photo {
+        width: 150px;
+        height: 150px;
+        margin: 20px auto;
+    }
+
+    h1 { 
+        font-size: 1.8em;
+        margin: 10px 0;
+    }
+
+    .tuvan-text {
+        font-size: 0.9em;
+        padding: 10px;
+        margin: 10px 0;
+        line-height: 1.4;
+    }
+
+    .details-box {
+        padding: 12px;
+        margin: 10px 0;
+    }
+
+    .details-box p {
+        font-size: 0.9em;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .details-box i {
+        font-size: 1.1em;
+        margin: 0 5px;
+    }
+
+    .contact-info p {
+        font-size: 0.85em;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    .letter {
+        padding: 15px;
+    }
+
+    .letter-content {
+        padding: 10px;
+    }
+
+    .bear-stamp {
+        width: 80px;
+        height: 80px;
+    }
+
+    .click-hint {
+        font-size: 1em;
+        bottom: -30px;
+    }
+
+    /* Улучшаем отображение иконок на маленьких экранах */
+    .details-box p i,
+    .contact-info p i {
+        margin: 0 3px;
+    }
+
+    /* Улучшаем читаемость контактной информации */
+    .contact-info {
+        margin-top: 20px;
+    }
+
+    .contact-info p {
+        margin: 8px 0;
+    }
+
+    .special-text {
+        font-size: 1.1em;
+        margin: 15px 0;
+    }
+}
+
+/* Стили для очень маленьких экранов */
+@media (max-width: 360px) {
+    body {
+        padding: 5px;
+    }
+
+    .envelope-wrapper {
+        width: 100%;
+        aspect-ratio: 0.9/1;
+    }
+
+    .birthday-photo {
+        width: 120px;
+        height: 120px;
+        margin: 15px auto;
+    }
+
+    h1 { 
+        font-size: 1.6em;
+        margin: 8px 0;
+    }
+
+    .tuvan-text {
+        font-size: 0.85em;
+        padding: 8px;
+        margin: 8px 0;
+    }
+
+    .details-box,
+    .contact-info {
+        font-size: 0.8em;
+    }
+
+    .bear-stamp {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Стили для ландшафтной ориентации на мобильных */
+@media (max-height: 600px) and (orientation: landscape) {
+    .envelope-wrapper {
+        aspect-ratio: 1.8/1;
+        margin: 20px auto;
+    }
+
+    .birthday-photo {
+        width: 120px;
+        height: 120px;
+        margin: 10px auto;
+    }
+
+    .letter {
+        padding: 15px;
+    }
+
+    .letter-content {
+        padding: 10px;
+    }
+
+    .tuvan-text {
+        font-size: 0.9em;
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .details-box {
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .contact-info {
+        margin-top: 10px;
+    }
+}
+
+/* Поддержка тёмной темы */
+@media (prefers-color-scheme: dark) {
+    .letter {
+        background: #ffffff;
+    }
+
+    .details-box {
+        background: rgba(255,192,203,0.15);
+    }
+}
+
+/* Улучшения для больших экранов */
+@media (min-width: 1440px) {
+    .envelope-wrapper {
+        max-width: 1000px;
+    }
+
+    .birthday-photo {
+        width: 300px;
+        height: 300px;
+    }
+
+    h1 { 
+        font-size: 3em; 
+    }
+
+    .tuvan-text {
+        font-size: 1.3em;
+    }
+
+    .details-box p,
+    .contact-info p {
+        font-size: 1.2em;
+    }
+}
+
+/* Улучшения для печати */
+@media print {
+    body {
+        background: white;
+    }
+
+    .envelope-wrapper {
+        box-shadow: none;
+    }
+
+    .sound-control,
+    .click-hint {
+        display: none;
+    }
+} 
