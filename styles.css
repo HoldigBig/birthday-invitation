@@ -407,8 +407,10 @@ h2 { font-size: 2em; }
 
 /* Стили для фото именинника */
 .birthday-photo {
-    width: 250px;
-    height: 250px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 1/1;
     margin: 30px auto;
     border-radius: 50%;
     overflow: hidden;
@@ -513,6 +515,11 @@ h2 { font-size: 2em; }
 
     .entertainment-items {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .birthday-photo {
+        max-width: 250px;
+        margin: 20px auto;
     }
 }
 
@@ -982,8 +989,8 @@ h2 { font-size: 2em; }
     }
 
     .birthday-photo {
-        width: 180px;
-        height: 180px;
+        max-width: 250px;
+        margin: 20px auto;
     }
 
     h1 { 
@@ -1035,9 +1042,9 @@ h2 { font-size: 2em; }
     }
 
     .birthday-photo {
-        width: 150px;
-        height: 150px;
-        margin: 20px auto;
+        max-width: 200px;
+        margin: 15px auto;
+        border-width: 4px;
     }
 
     h1 { 
@@ -1127,9 +1134,9 @@ h2 { font-size: 2em; }
     }
 
     .birthday-photo {
-        width: 120px;
-        height: 120px;
-        margin: 15px auto;
+        max-width: 180px;
+        margin: 10px auto;
+        border-width: 3px;
     }
 
     h1 { 
